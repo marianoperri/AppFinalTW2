@@ -1,0 +1,39 @@
+<!-- Toolbar -->
+<!-- <mat-toolbar color="primary" class="app-header" layout-fill> 
+  <div class="md-toolbar-tools">
+    <button *ngIf="isLogIn" mat-button routerLink="inicio" routerLinkActive="active">Inicio</button>
+    <button mat-button *ngIf="user" class="example-spacer">{{user}}</button>
+    <span class="material-icons md-36">shopping_cart</span>
+    <span flex></span>
+    <button *ngIf="isLogIn" mat-button class="" (click)="Logout()">Cerrar sesión</button>
+    <button *ngIf="!isLogIn" mat-button routerLink="login" routerLinkActive="active">Iniciar sesión</button>
+    <button *ngIf="!isLogIn" mat-button mat-raised-button routerLink="registro" routerLinkActive="active">Registrarse</button>
+  </div>
+</mat-toolbar> -->
+
+<mat-toolbar color="primary" class="app-header">
+  <button *ngIf="!isLogIn" mat-button routerLink="login" routerLinkActive="active">Iniciar sesión</button>
+  <button *ngIf="!isLogIn" mat-button mat-raised-button routerLink="registro" routerLinkActive="active">Registrarse</button>
+
+    <button *ngIf="isLogIn" 
+    mat-icon-button 
+    routerLink="inicio" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+    </button>
+
+  
+  <span class="toolbar-name">Taller Web 2</span>
+  <span class="example-spacer"></span>
+  <div  mat-button *ngIf="user" class="example-spacer">{{user}}
+  </div>
+  <button *ngIf="isLogIn" mat-icon-button
+    routerLink="pedido" routerLinkActive="active"
+    class="example-icon ">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <button *ngIf="isLogIn" mat-button class="" (click)="Logout()">Cerrar sesión
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

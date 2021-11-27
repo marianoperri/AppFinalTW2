@@ -1,0 +1,23 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Iniciar sesión</mat-card-title>
+      </mat-card-header>
+      <h3 *ngIf="message !=''" class="md-headline" md-colors="green">{{message}}</h3>
+      <form class="example-form" novalidate [formGroup]="form" (ngSubmit)="iniciar($event)" >
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="email" formControlName="email" value="'${{user}}'">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Password" formControlName="password" >
+          </mat-form-field>
+
+          <mat-error *ngIf="logFail">Usuario o contraseña incorrecto</mat-error>
+        </mat-card-content>
+        <button type="submit" mat-stroked-button color="accent" class="btn-block">Iniciar</button>
+      </form>
+    </mat-card>
+  
+  </div>

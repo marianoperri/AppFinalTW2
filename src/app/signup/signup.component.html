@@ -1,0 +1,36 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Registro</mat-card-title>
+      </mat-card-header>
+  
+      <form class="example-form"[formGroup]="form" novalidate (ngSubmit)="registro($event)">
+  
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Nombre" formControlName="nombre">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Apellido" formControlName="apellido">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email" formControlName="email">
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" type="password" formControlName="password" >
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Dirección" formControlName="direccion" >
+          </mat-form-field>
+  
+        </mat-card-content>
+        <mat-error *ngIf="signupFail">Algo salio mal verifica los datos</mat-error>
+  
+        <button mat-stroked-button color="primary" class="btn-block">Registro</button>
+  
+      </form>
+    </mat-card>
+  </div>

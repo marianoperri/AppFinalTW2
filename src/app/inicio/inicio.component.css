@@ -1,0 +1,16 @@
+.margintop {
+    margin-top: 4.5rem;
+}
+
+.example-card {
+    max-width: 400px;
+    align-items: center ;
+    margin: 4rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
+  .example-header-image {
+    /* max-height: 300px; */
+    background-size: cover;
+  }
