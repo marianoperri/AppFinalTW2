@@ -10,13 +10,23 @@ AWS.config.update({
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "PeliculasApi";
 
-const getPeliculas = async () =>{
+const getPeliculas =  () =>{
     const params = {
         TableName:TABLE_NAME
     };
-    const peliculas = await dynamoClient.scan(params).promise();
- 
-    return peliculas;
+    dynamoClient.scan(params, (err, res) =>{
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(res.Items);
+            return res;
+        }
+    })
+    // .then(res => json(res))
+    // .catch(err => err);
+    // const peliculas = await dynamoClient.scan(params).promise();
+    //console.log("await" + peliculas);
+    // return peliculas;
 }
 const addOrUpdatePeliculas = async (pelicula) => {
     const params = {
@@ -45,5 +55,6 @@ module.exports = {
     dynamoClient,
     getPeliculas,
     addOrUpdatePeliculas,
-    deletePelicula
+    deletePelicula,
+    TABLE_NAME
 };
