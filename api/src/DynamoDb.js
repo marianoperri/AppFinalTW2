@@ -22,11 +22,6 @@ const getPeliculas =  () =>{
             return res;
         }
     })
-    // .then(res => json(res))
-    // .catch(err => err);
-    // const peliculas = await dynamoClient.scan(params).promise();
-    //console.log("await" + peliculas);
-    // return peliculas;
 }
 const addOrUpdatePeliculas = async (pelicula) => {
     const params = {

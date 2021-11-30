@@ -27,11 +27,10 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    return "hello world";
+    res.status(200).json("hello world");
 });
 app.post('/login', isValid(validationSignIn), (req, res) => {
-    
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
+        var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails({
         Username : req.body.email,
         Password : req.body.password
     });
@@ -42,17 +41,11 @@ app.post('/login', isValid(validationSignIn), (req, res) => {
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            console.log('access token + ' + result.getAccessToken().Name);
-            // console.log('id token + ' + result.user.getName());
-            // console.log('refresh token + ' + result.getRefreshToken().getToken());
-            
             res.json({token: `${result.getAccessToken().getJwtToken()}` });
         },
         onFailure: function(err) {
-            
             res.json({error : `${err.message}`});
         }
-
     });
 
 });
@@ -76,7 +69,6 @@ app.post('/registro', isValid(validationSignUp) ,(req, res) => {
         });
     
 });
-
 app.get('/peliculas', (req, res) => {
     const params = {
         TableName:TABLE_NAME
@@ -86,14 +78,12 @@ app.get('/peliculas', (req, res) => {
             console.error(err);
             res.status(500).json({ err : "Algo salio mal intentalo mas tarde"});
         } else {
-            
-            res.status(200).json(data.Items) ;
+            res.status(200).json(data.Items);
         }
     
     });
 
 });
-
 app.post('/pelicula/add', async (req, res) => {
     const pelicula = req.body;
     try {
@@ -118,7 +108,6 @@ app.post('/pelicula/:id', async (req, res) => {
     }
 
 });
-
 app.delete('/pelicula/delete/:id', async (req, res) => {
     const {id} = req.params;
     try {        

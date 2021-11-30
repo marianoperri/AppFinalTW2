@@ -6,30 +6,35 @@ import { Pelicula } from 'src/model/Pelicula';
 })
 export class PedidosService {
   pedido: Pelicula[] = [];
-  constructor() { }
+  constructor() {
+  
+   }
 
   addPeli(pelicula : Pelicula){
-    this.pedido.push(pelicula);
-    localStorage.setItem('pedido', JSON.stringify(this.pedido));
-
+      this.pedido.push(pelicula);
+      localStorage.setItem('pedido', JSON.stringify(this.pedido));
   }
   cargarPedido():void{
     if(localStorage.getItem('pedido')){
-      var pedido = localStorage.getItem('pedido');
-      localStorage.setItem('pedido', JSON.stringify(pedido));
-
+      let pedidoStorage = localStorage.getItem('pedido');
+      this.pedido = pedidoStorage ? JSON.parse(pedidoStorage): '';
+      localStorage.setItem('pedido', JSON.stringify(this.pedido));
+    } else {      
+      localStorage.setItem('pedido', JSON.stringify(this.pedido));
     }
   }
 
   getPedido(){
     if(localStorage.getItem('pedido')){
       var pedido = localStorage.getItem('pedido');
-      return pedido ?  JSON.parse(pedido): null;
+      return pedido ?  JSON.parse(pedido): [];
+    } else {
+      return [];
     }
-    return;
   }
   updatePedido(pedido:Pelicula[] ){
     localStorage.setItem('pedido', JSON.stringify(pedido));
+    console.log("pase por aca");    
   }
     
 }

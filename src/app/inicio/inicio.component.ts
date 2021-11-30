@@ -17,12 +17,12 @@ export class InicioComponent implements OnInit {
     private repo : RepodbService,
     private pedidoServicio : PedidosService
     ) { 
+      
+    }
     
-  }
-  
-  ngOnInit(): void {
-    this.obtenerPeliculas();
+    ngOnInit(): void {
     this.pedidoServicio.cargarPedido();
+    this.obtenerPeliculas();
   }
 
   obtenerPeliculas():void {

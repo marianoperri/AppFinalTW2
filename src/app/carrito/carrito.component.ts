@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Pelicula } from 'src/model/Pelicula';
 import { PedidosService } from '../_services/pedidos.service';
 
@@ -11,29 +11,31 @@ export class CarritoComponent implements OnInit {
 
   pedido : Pelicula[] = [];
   totalPedido: number = 0;
+
   constructor(
     private pedidoServicio : PedidosService
   ) { 
     
-  }
-
-  ngOnInit(): void {
-    this.pedido = this.pedidoServicio.getPedido();
-    console.log(this.pedido);
     
+  }
+  
+  ngOnInit(): void {
+    this.pedido = [];
+    this.pedido = this.pedidoServicio.getPedido();
     this.total();
   }
   borrarPeli(id: number){
-    this.pedido.splice(id);
+    this.totalPedido -= this.pedido[id].precio;
+    this.pedido.splice(id,1);   
     this.pedidoServicio.updatePedido(this.pedido);
+    
   }
 
   total(){
     if (this.pedido) {
-      for(let pedido of this.pedido){
-        this.totalPedido +=pedido.precio
-      }
-      
+      for(let pedido of this.pedido){       
+        this.totalPedido +=pedido.precio       
+      }      
     }
   }
 

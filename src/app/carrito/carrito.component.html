@@ -15,7 +15,7 @@
       <!-- <h3 *ngIf="message !=''" class="md-headline" md-colors="green">{{message}}</h3> -->
       <!-- <form class="example-form" novalidate [formGroup]="form" (ngSubmit)="iniciar($event)" > -->
         <mat-card-content>
-            <mat-list *ngIf="pedido; else elseBlock" role="list" class="margintop">
+            <mat-list *ngIf="pedido.length >0; else elseBlock" role="list" class="margintop">
                 <mat-list-item *ngFor="let pelicula of pedido; index as i;" >
                     <mat-icon mat-list-icon>movie</mat-icon>
                     <div mat-line>{{pelicula.title}}</div>
@@ -23,11 +23,11 @@
                     <div mat-line>borrar <mat-icon (click)="borrarPeli(i)" >delete_outline</mat-icon></div>
                 </mat-list-item>    
               </mat-list>
-              <ng-template #elseBlock><p>Todavía no pediste ninguna película</p></ng-template>
-                    <ng-template *ngIf="totalPedido">
-                        <hr>
-                        <p>Total: {{totalPedido}}</p>
-                    </ng-template> 
+              <ng-template fxLayoutAlign="center" #elseBlock><p>Todavía no pediste ninguna película</p></ng-template>
+              <mat-list *ngIf="totalPedido" fxLayoutAlign="center center">
+                  <hr>
+                  <p>Total: {{totalPedido}}</p>
+              </mat-list> 
 
           <!-- <mat-error *ngIf="logFail">Usuario o contraseña incorrecto</mat-error> -->
         </mat-card-content>
