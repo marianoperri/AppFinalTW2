@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Pelicula } from 'src/model/Pelicula';
+import { AlertService } from '../_services/alert.service';
 import { PedidosService } from '../_services/pedidos.service';
 import { RepodbService } from '../_services/repodb.service';
 
@@ -11,11 +12,13 @@ import { RepodbService } from '../_services/repodb.service';
 export class InicioComponent implements OnInit {
   
   peliculas: Pelicula[] = [];
+  MENSAJE_PELI_ADD : string = "Se agrego la pelicula: "
   
   
   constructor(
     private repo : RepodbService,
-    private pedidoServicio : PedidosService
+    private pedidoServicio : PedidosService,
+    public alert : AlertService
     ) { 
       
     }
@@ -33,7 +36,7 @@ export class InicioComponent implements OnInit {
   }
   agregarPelicula(pelicula: Pelicula){
     this.pedidoServicio.addPeli(pelicula);
-    return alert("ok");
+    this.alert.openAlertPeli(this.MENSAJE_PELI_ADD + pelicula.title);
  }
  
 }

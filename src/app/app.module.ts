@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from '../model/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+
 
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
@@ -15,6 +17,9 @@ import { AuthService } from './_services/auth.service';
 import { RepodbService } from './_services/repodb.service';
 import { CarritoComponent } from './carrito/carrito.component';
 import { PedidosService } from './_services/pedidos.service';
+import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
+import { AlertService } from './_services/alert.service';
+import { AlertAddPeliComponent } from './alert-add-peli/alert-add-peli.component';
 
 
 
@@ -24,7 +29,9 @@ import { PedidosService } from './_services/pedidos.service';
     SignupComponent,
     SigninComponent,
     InicioComponent,
-    CarritoComponent
+    CarritoComponent,
+    AlertDialogComponent,
+    AlertAddPeliComponent
   ],
   imports: [
     BrowserModule,
@@ -34,12 +41,15 @@ import { PedidosService } from './_services/pedidos.service';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // MatDialog
+    
   ],
   providers: [ 
     AuthService,
     RepodbService,
-    PedidosService 
+    PedidosService,
+    AlertService 
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

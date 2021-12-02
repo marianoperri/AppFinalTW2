@@ -76,12 +76,41 @@ app.get('/peliculas', (req, res) => {
     dynamoClient.scan(params, (err, data) =>{
         if (err) {
             console.error(err);
-            res.status(500).json({ err : "Algo salio mal intentalo mas tarde"});
+            res.status(500).json({ error : "Algo salio mal intentalo mas tarde"});
         } else {
             res.status(200).json(data.Items);
         }
     
     });
+
+});
+app.post('/pedido', (req, res) => {
+    const pedido  = req.body;
+    console.log(pedido);
+    const params1 = {
+        TableName:'PedidoApi'
+    }
+    dynamoClient.scan(params1, (err, data) => {
+        if (err) {
+                    console.error(err);
+                } else {        
+        pedido.id = data.ScannedCount +1
+        const params = {
+            TableName:'PedidoApi',
+            Item: pedido
+        };
+        dynamoClient.put(params, (err, data) =>{
+            if (err) {
+                console.error(err);
+                res.status(500).json({ error : err.message});
+            } else {
+                res.status(200).json({mensaje : "Pedido cargado correctamente"});
+            }
+        
+        });
+        }        
+    });
+    
 
 });
 app.post('/pelicula/add', async (req, res) => {

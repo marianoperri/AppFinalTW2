@@ -1,21 +1,13 @@
-<!-- 
-<mat-list *ngIf="pedido" role="list" class="margintop">
-    <mat-list-item *ngFor="let pelicula of pedido" >
-        <mat-icon mat-list-icon>movie</mat-icon>
-        <div mat-line>{{pelicula.title}}</div>
-        <div mat-line>${{pelicula.precio}}</div>
-    </mat-list-item>    
-  </mat-list> -->
+
 
   <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
         <mat-card-title>Pedido</mat-card-title>
       </mat-card-header>
-      <!-- <h3 *ngIf="message !=''" class="md-headline" md-colors="green">{{message}}</h3> -->
-      <!-- <form class="example-form" novalidate [formGroup]="form" (ngSubmit)="iniciar($event)" > -->
+
         <mat-card-content>
-            <mat-list *ngIf="pedido.length >0; else elseBlock" role="list" class="margintop">
+            <mat-list *ngIf="pedido.length > 0; else elseBlock" role="list" class="margintop">
                 <mat-list-item *ngFor="let pelicula of pedido; index as i;" >
                     <mat-icon mat-list-icon>movie</mat-icon>
                     <div mat-line>{{pelicula.title}}</div>
@@ -28,11 +20,11 @@
                   <hr>
                   <p>Total: {{totalPedido}}</p>
               </mat-list> 
-
-          <!-- <mat-error *ngIf="logFail">Usuario o contraseña incorrecto</mat-error> -->
         </mat-card-content>
-        <button type="submit" mat-stroked-button color="primary" class="btn-block">Finalizar Pedido</button>
-      <!-- </form> -->
+            <button *ngIf="pedido.length > 0; else elseButton" (click)="confirmarPedido()" mat-stroked-button color="primary" class="btn-block">Finalizar Pedido</button>
+        <ng-template #elseButton>
+          <button   [disabled]="true" mat-stroked-button color="primary" class="btn-block">Finalizar Pedido</button>
+        </ng-template>
     </mat-card>
   
   </div>
