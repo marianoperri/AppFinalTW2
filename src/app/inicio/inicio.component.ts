@@ -12,7 +12,7 @@ import { RepodbService } from '../_services/repodb.service';
 export class InicioComponent implements OnInit {
   
   peliculas: Pelicula[] = [];
-  MENSAJE_PELI_ADD : string = "Se agrego la pelicula: "
+  MENSAJE_PELI_ADD : string = "La película: "
   
   
   constructor(

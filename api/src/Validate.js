@@ -31,8 +31,16 @@ const validationSignIn = (data) =>{
     });
     schema.validateSync(data);
 }
+const validationPedido = (data) =>{
+    const schema = yup.object().shape({        
+        usuario: yup.string().email().required("El peido tiene lo tiene que hacer un usuario"),        
+        pedido: yup.array().min(1, "Tenes que ingresar un pedido").required("Tenes que ingresar un pedido")
+    });
+    schema.validateSync(data);
+}
 module.exports = {
     isValid,
     validationSignUp,
-    validationSignIn
+    validationSignIn,
+    validationPedido
 }

@@ -3,6 +3,7 @@ const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const { validationSignUp,
         validationSignIn,
+        validationPedido,
         isValid } = require('./src/Validate');
 
 const cognito = require('./src/cognito');
@@ -64,7 +65,7 @@ app.post('/registro', isValid(validationSignUp) ,(req, res) => {
             res.json({error});
         }
         user = result.user;
-        console.log('user name is ' + result.user);
+        // console.log('user name is ' + result.user);
         res.json({ usuario: `${user.getUsername()}` })
         });
     
@@ -84,9 +85,8 @@ app.get('/peliculas', (req, res) => {
     });
 
 });
-app.post('/pedido', (req, res) => {
+app.post('/pedido', isValid(validationPedido), (req, res) => {
     const pedido  = req.body;
-    console.log(pedido);
     const params1 = {
         TableName:'PedidoApi'
     }
